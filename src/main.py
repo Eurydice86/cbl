@@ -34,7 +34,7 @@ def list_competitors():
     competitors = database.list_all_competitors()
     competitors_json = json.dumps(competitors, indent=2)
     print(competitors_json)
-    with open("database/data.json", "w") as json_file:
+    with open("database/data.json", "w", encoding="utf8") as json_file:
         json_file.write(competitors_json)
 
 
@@ -42,7 +42,7 @@ def main():
     '''main function'''
     # create_competitor(first_name = "Nikos", last_name = "Kyriakopoulos")
 
-    list_competitors()
+    # list_competitors()
 
     # create_fight()
 
@@ -52,8 +52,8 @@ def main():
 
     # query(first_name = "Nikos", last_name = "Kyriakopoulos")
 
-
     # edit a competitor and update the database
+
     # remove a competitor from the database
 
 if __name__ == "__main__":
