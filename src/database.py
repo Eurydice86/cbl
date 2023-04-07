@@ -54,7 +54,8 @@ session = Session()
 def create_competitor(competitor : Competitor):
     '''creates a Competitor entry and adds it to the database'''
     full_name : str = competitor.first_name + competitor.last_name
-    check = session.query(exists().where(Competitor.first_name + Competitor.last_name == full_name)).scalar()
+    check = session.query(exists().\
+        where(Competitor.first_name + Competitor.last_name == full_name)).scalar()
     if check:
         print("The competitor already exists in the database")
         return
@@ -81,9 +82,18 @@ def update_elo(uid : str, new_rating : float):
 
 
 def query_by_full_name(first_name, last_name):
-    '''returns the competito_uid from the full name'''
+    '''returns the competitor_uid from the full name'''
     result = session.query(Competitor).\
         filter(Competitor.first_name == first_name).\
         filter(Competitor.last_name == last_name)
     for row in result:
         return row.competitor_uid
+
+def list_all_competitors():
+    '''returns a list of all competitors'''
+    competitors_dict = []
+    result = session.query(Competitor).order_by(Competitor.last_name.asc())
+    for row in result:
+        entry = {"last_name" : row.last_name, "first_name" : row.first_name}
+        competitors_dict.append(entry)
+    return competitors_dict
