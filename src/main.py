@@ -34,7 +34,7 @@ def list_competitors():
     competitors = database.list_all_competitors()
     competitors_json = json.dumps(competitors, indent=2)
     print(competitors_json)
-    with open("data.json", "w") as json_file:
+    with open("database/data.json", "w") as json_file:
         json_file.write(competitors_json)
 
 
