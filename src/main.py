@@ -1,6 +1,6 @@
 '''main module functionality'''
+import json
 import database
-
 
 def create_competitor(first_name, last_name):
     '''dummy function for creating a competitor'''
@@ -19,23 +19,40 @@ def update_elo(first_name, last_name, new_elo):
     uid = query(first_name=first_name, last_name=last_name)
     database.update_elo(uid, new_elo)
 
-def create_fight():
-    '''dummy function for setting up a fight'''
-    winner_uid = "e65a6c52-8849-416a-882c-021bcf38d087"
-    loser_uid = "6a86117b-6682-4e5f-8020-3e44e364a827"
+# def create_fight():
+ #   '''dummy function for setting up a fight'''
+ #   winner_uid = "e65a6c52-8849-416a-882c-021bcf38d087"
+ #   loser_uid = "6a86117b-6682-4e5f-8020-3e44e364a827"
 
 def query(first_name, last_name):
     '''dummy function for getting the uid from the name'''
     return database.query_by_full_name(first_name, last_name)
 
+
+def list_competitors():
+    '''dummy function for getting a list of all the competitors in formatted json'''
+    competitors = database.list_all_competitors()
+    competitors_json = json.dumps(competitors, indent=2)
+    print(competitors_json)
+    with open("data.json", "w") as json_file:
+        json_file.write(competitors_json)
+
+
 def main():
     '''main function'''
-    create_competitor(first_name = "Miro", last_name = "Lahtela")
+    # create_competitor(first_name = "Nikos", last_name = "Kyriakopoulos")
+
+    list_competitors()
 
     # create_fight()
+
     # log_fight()
+
     # update_elo(first_name="Nikos", last_name="Kyriakopoulos", new_elo=1000)
+
     # query(first_name = "Nikos", last_name = "Kyriakopoulos")
+
+
     # edit a competitor and update the database
     # remove a competitor from the database
 
