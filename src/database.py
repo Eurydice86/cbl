@@ -6,8 +6,12 @@ from sqlalchemy import create_engine, Column, String, Float, DateTime
 from sqlalchemy.orm import declarative_base, sessionmaker
 from sqlalchemy.sql import exists
 
-
+SQLALCHEMY_DATABASE_URL = "sqlite:///database/test.db"
+engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}, echo=False) # set echo true for logging
+Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+session = Session()
 Base = declarative_base()
+
 
 class Competitor(Base):
     '''class for the fighters table in the database'''
@@ -43,12 +47,6 @@ class Fight(Base):
 
     def __str__(self):
         return f"\n{self.fight_uid}\nWinner: {self.winner}, Loser: {self.loser}\n"
-
-
-engine = create_engine("sqlite:///database/test.db", echo=False) # set echo to True for logging
-Base.metadata.create_all(bind = engine)
-Session = sessionmaker(bind = engine)
-session = Session()
 
 
 def create_competitor(competitor : Competitor):
