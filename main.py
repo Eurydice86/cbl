@@ -21,7 +21,13 @@ def get_db():
 def main_page():
     return {"a": "b"}
 
-@app.get("/comeptitors/", response_model=list[schemas.Competitor])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    users = crud.get_users(db, skip=skip, limit=limit)
-    return users
+@app.get("/competitors/", response_model=list[schemas.Competitor])
+def list_competitors(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    competitors = crud.get_competitors(db, skip=skip, limit=limit)
+    return competitors
+
+
+@app.get("/competitors2/", response_model=list[schemas.Competitor])
+def list_competitors2(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    competitors = crud.get_competitors(db, skip=skip, limit=limit)
+    print(competitors)

@@ -2,5 +2,5 @@
 from sqlalchemy.orm import Session
 import models, schemas
 
-def get_users(db: Session, skip: int = 0, limit: int = 100):
+def get_competitors(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Competitor).offset(skip).limit(limit).all()
