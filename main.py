@@ -19,7 +19,7 @@ def get_db():
 
 @app.get("/")
 def main_page():
-    return {"a": "b"}
+    return "Main page"
 
 @app.get("/competitors/", response_model=list[schemas.Competitor])
 def list_competitors(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
