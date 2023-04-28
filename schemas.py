@@ -4,9 +4,8 @@ from pydantic import BaseModel
 
 class CompetitorBase(BaseModel):
     ''' Model for the Competitor class '''
-    first_name : str
-    last_name : str
-    rating : float
+    first_name: str
+    last_name: str
 
 
 class CompetitorCreate(CompetitorBase):
@@ -15,8 +14,8 @@ class CompetitorCreate(CompetitorBase):
 
 class Competitor(CompetitorBase):
     ''' Competitor class '''
-    competitor_uid : str
-    rating : int
+    competitor_uid: str
+    rating: float
 
     class Config:
         ''' configuration of the class '''

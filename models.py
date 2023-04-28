@@ -3,7 +3,7 @@
 # import uuid
 from datetime import datetime
 from sqlalchemy import Column, String, Float, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+# from sqlalchemy.orm import relationship
 from database import Base
 
 
@@ -14,7 +14,7 @@ class Competitor(Base):
     first_name = Column(String)
     last_name = Column(String)
     rating = Column(Float)
-    creation_timestamp = Column("creation_timestamp", DateTime(timezone=True), default=datetime.now)
+    creation_timestamp = Column(DateTime(timezone=True), default=datetime.now)
 
 
 class Fight(Base):
