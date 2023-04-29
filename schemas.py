@@ -1,6 +1,6 @@
 ''' Pydantic schemas setup '''
 from pydantic import BaseModel
-from datetime import datetime
+import uuid
 
 
 class CompetitorBase(BaseModel):
@@ -14,7 +14,7 @@ class CompetitorCreate(CompetitorBase):
 
 class Competitor(CompetitorBase):
     ''' Competitor class '''
-    competitor_uid: str
+    competitor_uid: uuid.UUID
     rating: float
 
     class Config:
