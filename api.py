@@ -21,7 +21,7 @@ def get_db():
         database.close()
 
 
-@app.post("/new-competitor", response_model=schemas.Competitor)
+@app.post("/competitors", response_model=schemas.Competitor)
 def create_competitor(
     competitor: schemas.CompetitorCreate,
     database: Session = Depends(get_db)

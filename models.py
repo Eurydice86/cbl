@@ -2,7 +2,7 @@
 
 import uuid
 from datetime import datetime
-from sqlalchemy import Column, String, Float, DateTime, ForeignKey
+from sqlalchemy import Column, String, Float, DateTime, ForeignKey, UUID
 # from sqlalchemy.orm import relationship
 from database import Base
 
@@ -10,9 +10,9 @@ from database import Base
 class Competitor(Base):
     '''class for the fighters table in the database'''
     __tablename__ = "competitors"
-    default_uid = str(uuid.uuid4())
+    default_uid = uuid.uuid4
 
-    competitor_uid = Column(String, primary_key=True, default=default_uid)
+    competitor_uid = Column(UUID(as_uuid=True), primary_key=True, default=default_uid)
     first_name = Column(String)
     last_name = Column(String)
     rating = Column(Float, default=1000.0)

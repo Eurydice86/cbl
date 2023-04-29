@@ -2,12 +2,11 @@
 import requests
 
 
-add_competitor_URL = "http://127.0.0.1:8000/new-competitor"
+add_competitor_URL = "http://127.0.0.1:8000/competitors"
 
 data = {
-  "first_name": "Nikos",
-  "last_name": "Kyriakopoulos",
-  "rating": 1000.0,
+  "first_name": "iita",
+  "last_name": "Lehtinen",
 }
 add_competitor_response = requests.post(add_competitor_URL, json=data)
 
