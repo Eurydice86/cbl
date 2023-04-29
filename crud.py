@@ -34,14 +34,16 @@ def get_competitors_ranked(database: Session, limit: int = 10):
         limit
         ).all()
 
-def create_competitor(database: Session, competitor: schemas.CompetitorCreate, first_name: str, last_name: str):
+def create_competitor(
+        database: Session,
+        competitor: schemas.CompetitorCreate,
+        ):
     ''' Create a new competitor and add them to the database '''
-    uid = str(uuid.uuid4())
-    db_competitor = models.Competitor(
-        first_name=first_name,
-        last_name=last_name,
-        competitor_uid= uid,
-        rating= 1000.0)
+    db_competitor=models.Competitor(
+        first_name=competitor.first_name,
+        last_name=competitor.last_name,
+        )
+
     database.add(db_competitor)
     database.commit()
     database.refresh(db_competitor)
@@ -59,13 +61,7 @@ def create_competitor(database: Session, competitor: schemas.CompetitorCreate, f
 
 
 def main():
-    print("main starts")
-    from database import SessionLocal
-    #comp = get_competitor(uid="941c1c8a-8ab1-46e9-92ad-ea7081c1e252", database=SessionLocal())
-
-    #comp = create_competitor(database=SessionLocal(), first_name="John", last_name="Doe")
-    #print(comp.competitor_uid, comp.first_name, comp.last_name, comp.rating)
-
+    ''' Use crud as main '''
 
 if __name__ == "__main__":
     main()

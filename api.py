@@ -20,19 +20,18 @@ def get_db():
     finally:
         database.close()
 
-@app.post("/new-competitor/{first_name}+{last_name}", response_model=schemas.Competitor)
+
+@app.post("/new-competitor", response_model=schemas.Competitor)
 def create_competitor(
-    first_name: str,
-    last_name: str,
     competitor: schemas.CompetitorCreate,
     database: Session = Depends(get_db)
     ):
     ''' Create a new competitor and add them to the database '''
     return crud.create_competitor(
         database=database,
-        competitor=competitor,
-        first_name=first_name,
-        last_name=last_name)
+        competitor=competitor
+        )
+
 
 
 
