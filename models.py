@@ -1,20 +1,22 @@
 '''deals with the database models'''
 
-# import uuid
+import uuid
 from datetime import datetime
 from sqlalchemy import Column, String, Float, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
+# from sqlalchemy.orm import relationship
 from database import Base
 
 
 class Competitor(Base):
     '''class for the fighters table in the database'''
     __tablename__ = "competitors"
-    competitor_uid = Column(String, primary_key=True)
+    default_uid = str(uuid.uuid4())
+
+    competitor_uid = Column(String, primary_key=True, default=default_uid)
     first_name = Column(String)
     last_name = Column(String)
-    rating = Column(Float)
-    creation_timestamp = Column("creation_timestamp", DateTime(timezone=True), default=datetime.now)
+    rating = Column(Float, default=1000.0)
+    creation_timestamp = Column(DateTime(timezone=True), default=datetime.now)
 
 
 class Fight(Base):

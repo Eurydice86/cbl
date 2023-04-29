@@ -1,13 +1,12 @@
 ''' Pydantic schemas setup '''
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class CompetitorBase(BaseModel):
     ''' Model for the Competitor class '''
-    first_name : str
-    last_name : str
-    rating : float
-
+    first_name: str
+    last_name: str
 
 class CompetitorCreate(CompetitorBase):
     ''' Creation of the Competitor class '''
@@ -15,8 +14,8 @@ class CompetitorCreate(CompetitorBase):
 
 class Competitor(CompetitorBase):
     ''' Competitor class '''
-    competitor_uid : str
-    rating : int
+    competitor_uid: str
+    rating: float
 
     class Config:
         ''' configuration of the class '''
@@ -27,7 +26,7 @@ class FightBase(BaseModel):
     ''' Model for the Fight class '''
     winner : str
     loser : str
-
+    fight_uid : str
 
 class FightCreate(FightBase):
     ''' Creation of the Fight class '''
@@ -35,7 +34,7 @@ class FightCreate(FightBase):
 
 class Fight(FightBase):
     ''' Fight class '''
-    fight_uid : str
+
 
     class Config:
         ''' configuration of the class '''
