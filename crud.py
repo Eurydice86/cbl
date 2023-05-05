@@ -29,7 +29,8 @@ def get_competitors_ranked(database: Session, limit: int = 10):
     return database.query(
         models.Competitor
         ).order_by(
-        models.Competitor.rating.desc()
+        models.Competitor.rating.desc(),
+        models.Competitor.last_name.asc()
         ).limit(
         limit
         ).all()
