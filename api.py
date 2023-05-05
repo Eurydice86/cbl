@@ -55,9 +55,21 @@ def show_top_n_competitors(top_n: int,
     return competitors
 
 
-@app.get("/fights/", response_model=list[schemas.Fight])
+@app.get("/fights", response_model=list[schemas.Fight])
 def list_fights(database: Session = Depends(get_db)):
     '''Get a list of all fights'''
     fights = crud.get_fights(database)
     return fights
 
+
+
+@app.post("/new_fight", response_model=schemas.Fight)
+def log_fight(
+    fight: schemas.FightCreate,
+    database: Session = Depends(get_db)
+    ):
+    ''' Create a new fight and add it to the database '''
+    return crud.log_fight(
+        database=database,
+        fight=fight
+        )

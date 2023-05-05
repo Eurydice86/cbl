@@ -24,9 +24,8 @@ class Competitor(CompetitorBase):
 
 class FightBase(BaseModel):
     ''' Model for the Fight class '''
-    winner : str
-    loser : str
-    fight_uid : str
+    winner_uid: uuid.UUID
+    loser_uid: uuid.UUID
 
 class FightCreate(FightBase):
     ''' Creation of the Fight class '''
@@ -34,6 +33,7 @@ class FightCreate(FightBase):
 
 class Fight(FightBase):
     ''' Fight class '''
+    fight_uid: uuid.UUID
 
 
     class Config:
