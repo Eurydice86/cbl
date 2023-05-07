@@ -1,4 +1,5 @@
 ''' Main functionality of the API '''
+from uuid import UUID
 from fastapi import Depends, FastAPI#, HTTPException
 from sqlalchemy.orm import Session
 
@@ -42,7 +43,10 @@ def list_competitors(database: Session = Depends(get_db)):
     return competitors
 
 @app.get("/competitors/{uid}", response_model=schemas.Competitor)
-def show_competitor_details(uid: str, database: Session = Depends(get_db)):
+def show_competitor_details(
+    uid: UUID,
+    database: Session = Depends(get_db)
+    ):
     '''Get a list of the competitor with given uid'''
     competitor = crud.get_competitor(uid, database)
     return competitor
@@ -73,3 +77,13 @@ def log_fight(
         database=database,
         fight=fight
         )
+
+@app.get("/competitor/{first_name}+{last_name}", response_model=schemas.Competitor)
+def show_competitor_details(
+    first_name: str,
+    last_name: str,
+    database: Session = Depends(get_db)
+    ):
+    '''Get a list of the competitor with given uid'''
+    competitor = crud.get_competitor_by_name(first_name, last_name, database)
+    return competitor

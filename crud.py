@@ -67,16 +67,11 @@ def log_fight(
     return db_fight
 
 
-
-
-
-
-
-
-
-
-def main():
-    ''' Use crud as main '''
-
-if __name__ == "__main__":
-    main()
+def get_competitor_by_name(first_name, last_name, database: Session):
+    ''' Get competitor list from the database '''
+    return database.query(
+        models.Competitor
+        ).where(
+        models.Competitor.first_name == first_name and
+        models.Competitor.last_name == last_name
+        ).first()
